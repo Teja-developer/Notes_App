@@ -142,7 +142,6 @@ public class MainActivity extends AppCompatActivity {
             if(result.isSuccess()){
                 GoogleSignInAccount account = result.getSignInAccount();
                 firebaseAuthWithGoogle(account);
-
             }
             else {
                 Toast.makeText(getApplicationContext(),"Auth went wrong",Toast.LENGTH_SHORT);
@@ -172,6 +171,8 @@ public class MainActivity extends AppCompatActivity {
                         // ...
                     }
                 });
+
+
     }
 
     //Email Version of login...

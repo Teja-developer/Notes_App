@@ -13,6 +13,7 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Toast;
 
@@ -35,10 +36,12 @@ public class NewNote extends AppCompatActivity {
     private AlertDialog saveDialog;
     private Bundle bundle;
     ImageView mSave;
+    ImageButton voice;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_note);
+
         mbEdit = (EditText) findViewById(R.id.bodyEdit);
         mDefaultColor = ContextCompat.getColor(NewNote.this, R.color.colorPrimary);
         mButton = (ImageView) findViewById(R.id.colorch);
@@ -49,9 +52,10 @@ public class NewNote extends AppCompatActivity {
         mButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              openColorPicker();
+                openColorPicker();
             }
         });
+
 
         bundle = getIntent().getExtras();
         if (bundle != null) {
@@ -83,12 +87,14 @@ public class NewNote extends AppCompatActivity {
 
             @Override
             public void onOk(AmbilWarnaDialog dialog, int color) {
-              mDefaultColor = color;
-              mbEdit.setTextColor(mDefaultColor);
+                mDefaultColor = color;
+                mbEdit.setTextColor(mDefaultColor);
             }
         });
         colorPicker.show();
     }
+
+
 
     public void backs(View view)
     {
@@ -112,7 +118,7 @@ public class NewNote extends AppCompatActivity {
         saveChanges();
     }
 
-//TODO Error Dialog  for saving.....................
+    //TODO Error Dialog  for saving.....................
     protected void initDialogs(Context context)
     {
         saveDialog = new AlertDialog.Builder(context)
@@ -146,7 +152,7 @@ public class NewNote extends AppCompatActivity {
                         }
                     }
                 })
-                 .create();
+                .create();
 
     }
 
@@ -175,7 +181,7 @@ public class NewNote extends AppCompatActivity {
                 if(!(mhEdit.getText().toString().equals(bundle.getString(NOTE_TITLE)))||
                         !(mbEdit.getText().toString().equals(bundle.getString(NOTE_BODY))))
                 {
-                  saveChanges();
+                    saveChanges();
                 }
 
                 else {
@@ -186,7 +192,7 @@ public class NewNote extends AppCompatActivity {
                 }
             }
             else
-             toastEditTextCannotBeEmpty();
+                toastEditTextCannotBeEmpty();
         }
     }
 
